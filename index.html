@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Haven</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section id="signup-section" class="form-section">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit" class="custom-btn btn-3">
+          <span>sign up</span>
+        </button>
+      </form>
+    </section>
+    <!-- =========================================================================== -->
+
+    <section id="home-section" style="display: none">
+        <h2 id="welcome-message"></h2>
+      <h3>Welcome to Tech Haven</h3>
+      <div class="products" id="product-container">
+        <div class="product" draggable="true" data-id="1">
+          <h3>laptob</h3>
+          <img src="images/laptob.avif" alt="laptob" />
+          <button class="favorite-btn btn-3" onclick="addToFavorites(1)">Add to Favorites</button>
+        </div>
+        <div class="product" draggable="true" data-id="2">
+          <h3>smartphone</h3>
+          <img src="images/smartphones.jpg" alt="" />
+          <button class="favorite-btn btn-3" onclick="addToFavorites(2)">Add to Favorites</button>
+        </div>
+        <div class="product" draggable="true" data-id="3">
+          <h3>Headphones</h3>
+          <img src="images/headphones.jpeg" alt="headphones" />
+          <button class="favorite-btn btn-3" onclick="addToFavorites(3)">Add to Favorites</button>
+        </div>
+        <div class="product" draggable="true" data-id="4">
+          <h3>smartwatch</h3>
+          <img src="images/smartwatch.jpg" alt="" />
+          <button class="favorite-btn btn-3" onclick="addToFavorites(4)">Add to Favorites</button>
+        </div>
+      </div>
+
+      <div id="favorites-section">
+        <h2>Favorites</h2>
+        <div id="preferred-items"></div>
+    </div>
+    </section>
+
+    <script src="main.js"></script>
+
+    <!-- <script>
+      loadPreferredItems();
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          document.getElementById("signup-section").style.display = "none";
+          document.getElementById("home-section").style.display = "block";
+        });
+
+      document.querySelectorAll(".product").forEach((product) => {
+        product.addEventListener("dragstart", function (event) {
+          event.dataTransfer.setData("text", this.dataset.id);
+        });
+      });
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        let productId = event.dataTransfer.getData("text");
+//         // const elements = document.querySelectorAll(".yourClass");
+// if (elements.length > 0) {
+//     elements.forEach(el => {
+//         const clone = el.cloneNode(true);
+//     });
+// } else {
+//     console.error("No elements found!");
+// }
+
+
+        let product = document.querySelector(
+          `.product[data-id='${productId}']`
+        );
+        
+          const clone = product.cloneNode(true);
+       
+        document.getElementById("preferred-items").appendChild(clone);
+        savePreferredItems();
+      }
+
+      function savePreferredItems() {
+        let items = [];
+        const preferredItems = document
+        .querySelectorAll("#preferred-items .product")
+        if(preferredItems){
+
+            preferredItems.forEach((item) => {
+              items.push(item.dataset.id);
+            });
+        }
+        localStorage.setItem("preferredProducts", JSON.stringify(items));
+      }
+
+      function loadPreferredItems() {
+        let savedItems =
+          JSON.parse(localStorage.getItem("preferredProducts")) || [];
+        savedItems.forEach((id) => {
+          let product = document
+            .querySelector(`.product[data-id='${id}']`)
+            .cloneNode(true);
+          document.getElementById("preferred-items").appendChild(product);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", loadPreferredItems);
+    </script> -->
+  </body>
+</html>
