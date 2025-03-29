@@ -196,4 +196,17 @@ body {
  .product:active {
      cursor: grabbing;
  }
- 
+
+ #favorites-section{
+  margin: 50px 0;
+  text-align: center;
+ }
+
+
+ #preferred-items{
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+ }

@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const productContainer = document.querySelector(".products");
+    const favoritesSection = document.getElementById("favorites-section");
+    const preferredItems = document.getElementById("preferred-items");
 
     products.forEach(product => {
         const productDiv = document.createElement("div");
@@ -95,18 +97,25 @@ document.addEventListener("DOMContentLoaded", function () {
         productContainer.appendChild(productDiv);
     });
 
-        const favoritesSection = document.getElementById("favorites-section");
-        
-        if (favoritesSection) { 
-            let clearFavoritesBtn = document.createElement("button");
-            
-            clearFavoritesBtn.textContent = "Clear All";
-            clearFavoritesBtn.classList.add("clear-btn");
-            clearFavoritesBtn.classList.add("btn-3");
-            clearFavoritesBtn.onclick = clearFavorites;
-            favoritesSection.appendChild(clearFavoritesBtn);
-        }
-        
-   
+    //  Add drag-and-drop functionality
+    if (favoritesSection) {
+        favoritesSection.addEventListener("dragover", function (event) {
+            event.preventDefault(); // Allow drop
+        });
+
+        favoritesSection.addEventListener("drop", function (event) {
+            event.preventDefault();
+            const productId = event.dataTransfer.getData("text");
+            addToFavorites(productId);
+        });
+
+        let clearFavoritesBtn = document.createElement("button");
+        clearFavoritesBtn.textContent = "Clear All";
+        clearFavoritesBtn.classList.add("clear-btn");
+        clearFavoritesBtn.classList.add("btn-3");
+        clearFavoritesBtn.onclick = clearFavorites;
+        favoritesSection.appendChild(clearFavoritesBtn);
+    }
+
     updateFavoritesUI();
 });
